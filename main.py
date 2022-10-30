@@ -5,7 +5,6 @@ from PyQt6 import QtCore, QtGui
 import csv
 import os
 
-test
 
 RFID_Dictionary = {}
 
