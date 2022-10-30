@@ -1,9 +1,14 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QLineEdit, QPushButton, QTextEdit, QVBoxLayout, QFileDialog
-from PyQt6.QtGui import QIcon
-from PyQt6 import QtCore, QtGui
 import csv
 import os
+
+from PyQt6.QtWidgets import *
+from PyQt6.QtGui import QIcon, QFont, QFontDatabase
+from PyQt6 import QtCore
+
+from window import guest_log
+
+
 
 RFID_Dictionary = {}
 
@@ -15,20 +20,31 @@ class MyApp(QWidget):
         self.setWindowTitle('Epstein Hillel Guest Log')
         self.setWindowIcon(QIcon('epstein-hillel-logo-color.svg'))
         self.resize(500, 350)
+        #self.setContentsMargins(20, 20, 20, 20)
         layout = QVBoxLayout()
         self.setLayout(layout)
         self.RFID_Dictionary = {}
         self.People_Present = []
         self.scanning = True
 
+        id = QFontDatabase.addApplicationFont("/home/deck/Documents/RFID/Res/Metropolis-Medium.otf")
+        if id < 0: print("Error")
+
+        families = QFontDatabase.applicationFontFamilies(id)
+        print(families[0])
+
+        label = QLabel("Hello World", self)
+        label.setFont(QFont(families[0]))
+        #label.move(50, 100)
+
         # Widgets
         self.inputField = QLineEdit()
         button = QPushButton('&Say Hello', clicked=self.open)
         self.output = QTextEdit()
 
-        layout.addWidget(self.inputField)
-        layout.addWidget(button)
-        layout.addWidget(self.output)
+        # layout.addWidget(self.inputField)
+        # layout.addWidget(button)
+        # layout.addWidget(self.output)
 
     def sayhello(self):
         inputText = self.inputField.text()
@@ -49,6 +65,10 @@ class MyApp(QWidget):
                 self.showNormal()
             else:
                 self.showFullScreen()
+
+
+    def drawItems(self):
+        self.imageLogo = QPixmap("epstein-hillel-logo-color.svg")
 
 
 def csv_to_dict(csv_file):
@@ -86,4 +106,4 @@ window.show()
 # for people in window.People_Present:
 #     print(RFID_Dictionary[people])
 
-app.exec()
+sys.exit(app.exec())
