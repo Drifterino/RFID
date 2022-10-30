@@ -5,9 +5,6 @@ from PyQt6 import QtCore, QtGui
 import csv
 import os
 
-test for real
-
-
 RFID_Dictionary = {}
 
 #TODO Find out how to open a PyQt6 UI file
