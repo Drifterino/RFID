@@ -6,8 +6,6 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtGui import QIcon, QFont, QFontDatabase
 from PyQt6 import QtCore
 
-from window import guest_log
-
 
 
 RFID_Dictionary = {}
@@ -42,9 +40,9 @@ class MyApp(QWidget):
         button = QPushButton('&Say Hello', clicked=self.open)
         self.output = QTextEdit()
 
-        # layout.addWidget(self.inputField)
-        # layout.addWidget(button)
-        # layout.addWidget(self.output)
+        layout.addWidget(self.inputField)
+        layout.addWidget(button)
+        layout.addWidget(self.output)
 
     def sayhello(self):
         inputText = self.inputField.text()
